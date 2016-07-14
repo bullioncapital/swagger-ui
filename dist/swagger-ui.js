@@ -1,6 +1,6 @@
 /**
  * @abx/swagger-ui - Swagger UI is a dependency-free collection of HTML, JavaScript, and CSS assets that dynamically generate beautiful documentation from a Swagger-compliant API
- * @version v2.1.6
+ * @version v2.1.7
  * @link http://swagger.io
  * @license Apache-2.0
  */
@@ -429,12 +429,12 @@ this["Handlebars"]["templates"]["main"] = Handlebars.template({"1":function(dept
     + "</a>\n";
 },"4":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div class=\"info_tos\"><a href=\""
+  return "<div class=\"info_tos\"><a target=\"_blank\" href=\""
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.termsOfServiceUrl : stack1), depth0))
     + "\" data-sw-translate>Terms of service</a></div>";
 },"6":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div class='info_name' data-sw-translate>Created by "
+  return "<div><div class='info_name' style=\"display: inline\" data-sw-translate>Created by </div> "
     + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.contact : stack1)) != null ? stack1.name : stack1), depth0))
     + "</div>";
 },"8":function(depth0,helpers,partials,data) {
@@ -453,7 +453,7 @@ this["Handlebars"]["templates"]["main"] = Handlebars.template({"1":function(dept
     + "\" data-sw-translate>Contact the developer</a></div>";
 },"12":function(depth0,helpers,partials,data) {
   var stack1, lambda=this.lambda, escapeExpression=this.escapeExpression;
-  return "<div class='info_license'><a href='"
+  return "<div class='info_license'><a target=\"_blank\" href='"
     + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.license : stack1)) != null ? stack1.url : stack1), depth0))
     + "'>"
     + escapeExpression(lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.info : depth0)) != null ? stack1.license : stack1)) != null ? stack1.name : stack1), depth0))
@@ -465,7 +465,7 @@ this["Handlebars"]["templates"]["main"] = Handlebars.template({"1":function(dept
     + "\n    ";
 },"16":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-  return "    <span style=\"float:right\"><a href=\""
+  return "    <span style=\"float:right\"><a target=\"_blank\" href=\""
     + escapeExpression(((helper = (helper = helpers.validatorUrl || (depth0 != null ? depth0.validatorUrl : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"validatorUrl","hash":{},"data":data}) : helper)))
     + "/debug?url="
     + escapeExpression(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"url","hash":{},"data":data}) : helper)))
@@ -560,9 +560,9 @@ this["Handlebars"]["templates"]["operation"] = Handlebars.template({"1":function
     + escapeExpression(lambda((depth0 != null ? depth0.other : depth0), depth0))
     + "</td>\n              </tr>\n";
 },"15":function(depth0,helpers,partials,data) {
-  return "          <h4 data-sw-translate>Parameters</h4>\n          <table class='fullwidth'>\n          <thead>\n            <tr>\n            <th style=\"width: 100px; max-width: 100px\" data-sw-translate>Parameter</th>\n            <th style=\"width: 310px; max-width: 310px\" data-sw-translate>Value</th>\n            <th style=\"width: 200px; max-width: 200px\" data-sw-translate>Description</th>\n            <th style=\"width: 100px; max-width: 100px\" data-sw-translate>Parameter Type</th>\n            <th style=\"width: 220px; max-width: 230px\" data-sw-translate>Data Type</th>\n            </tr>\n          </thead>\n          <tbody class=\"operation-params\">\n\n          </tbody>\n          </table>\n";
+  return "          <h4 data-sw-translate>Parameters</h4>\n          <table class='fullwidth parameters'>\n          <thead>\n            <tr>\n            <th style=\"width: 100px; max-width: 100px\" data-sw-translate>Parameter</th>\n            <th style=\"width: 310px; max-width: 310px\" data-sw-translate>Value</th>\n            <th style=\"width: 200px; max-width: 200px\" data-sw-translate>Description</th>\n            <th style=\"width: 100px; max-width: 100px\" data-sw-translate>Parameter Type</th>\n            <th style=\"width: 220px; max-width: 230px\" data-sw-translate>Data Type</th>\n            </tr>\n          </thead>\n          <tbody class=\"operation-params\">\n\n          </tbody>\n          </table>\n";
   },"17":function(depth0,helpers,partials,data) {
-  return "          <div style='margin:0;padding:0;display:inline'></div>\n          <h4 data-sw-translate>Response Messages</h4>\n          <table class='fullwidth'>\n            <thead>\n            <tr>\n              <th data-sw-translate>HTTP Status Code</th>\n              <th data-sw-translate>Reason</th>\n              <th data-sw-translate>Response Model</th>\n              <th data-sw-translate>Headers</th>\n            </tr>\n            </thead>\n            <tbody class=\"operation-status\">\n            </tbody>\n          </table>\n";
+  return "          <div style='margin:0;padding:0;display:inline'></div>\n          <h4 data-sw-translate>Response Messages</h4>\n          <table class='fullwidth response-messages'>\n            <thead>\n            <tr>\n              <th data-sw-translate>HTTP Status Code</th>\n              <th data-sw-translate>Reason</th>\n              <th data-sw-translate>Response Model</th>\n              <th data-sw-translate>Headers</th>\n            </tr>\n            </thead>\n            <tbody class=\"operation-status\">\n            </tbody>\n          </table>\n";
   },"19":function(depth0,helpers,partials,data) {
   return "";
 },"21":function(depth0,helpers,partials,data) {
@@ -19263,6 +19263,10 @@ SwaggerUi.Views.AuthButtonView = Backbone.View.extend({
             content: this.$authEl
         };
 
+        // The content of the popup is removed and all events unbound after clicking the 'Cancel' button of the popup.
+        // We'll have to re-render the contents before creating a new popup view.
+        this.render();
+
         this.popup = new SwaggerUi.Views.PopupView({model: authsModel});
         this.popup.render();
     },
@@ -19358,7 +19362,7 @@ SwaggerUi.Collections.AuthsCollection = Backbone.Collection.extend({
         var authz = Object.assign({}, window.swaggerUi.api.clientAuthorizations.authz);
 
         return _.map(data, function (auth, name) {
-            var isBasic = authz.basic && auth.type === 'basic';
+            var isBasic = authz[name] && auth.type === 'basic' && authz[name].username && authz[name].password;
 
             _.extend(auth, {
                 title: name
@@ -19368,8 +19372,8 @@ SwaggerUi.Collections.AuthsCollection = Backbone.Collection.extend({
                 _.extend(auth, {
                     isLogout: true,
                     value: isBasic ? undefined : authz[name].value,
-                    username: isBasic ? authz.basic.username : undefined,
-                    password: isBasic ? authz.basic.password : undefined,
+                    username: isBasic ? authz[name].username : undefined,
+                    password: isBasic ? authz[name].password : undefined,
                     valid: true
                 });
             }
@@ -19505,7 +19509,7 @@ SwaggerUi.Views.AuthView = Backbone.View.extend({
                 this.router.api.clientAuthorizations.add(auth.get('title'), keyAuth);
             } else if (type === 'basic') {
                 basicAuth = new SwaggerClient.PasswordAuthorization(auth.get('username'), auth.get('password'));
-                this.router.api.clientAuthorizations.add(auth.get('type'), basicAuth);
+                this.router.api.clientAuthorizations.add(auth.get('title'), basicAuth);
             } else if (type === 'oauth2') {
                 this.handleOauth2Login(auth);
             }
@@ -19518,9 +19522,7 @@ SwaggerUi.Views.AuthView = Backbone.View.extend({
         e.preventDefault();
 
         this.authsCollectionView.collection.forEach(function (auth) {
-            var name = auth.get('type') === 'basic' ? 'basic' : auth.get('title');
-
-            window.swaggerUi.api.clientAuthorizations.remove(name);
+            window.swaggerUi.api.clientAuthorizations.remove(auth.get('title'));
         });
 
         this.router.load();
@@ -19684,12 +19686,9 @@ SwaggerUi.Views.BasicAuthView = Backbone.View.extend({
         if (!this.model.get('username')) {
             this.$(this.selectors.usernameInput).addClass(this.cls.error);
         }
-
-        if (!this.model.get('password')) {
-            this.$(this.selectors.passwordInput).addClass(this.cls.error);
-        }
     }
 });
+
 'use strict';
 
 SwaggerUi.Views.ContentTypeView = Backbone.View.extend({
@@ -19764,7 +19763,6 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
     this.router = opts.router;
 
-    document.addEventListener('click', this.onLinkClick, true);
     // Sort APIs
     if (opts.swaggerOptions.apisSorter) {
       sorterOption = opts.swaggerOptions.apisSorter;
@@ -19834,6 +19832,12 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
   render: function () {
     $(this.el).html(Handlebars.templates.main(this.model));
+    this.info = this.$('.info')[0];
+
+    if (this.info) {
+      this.info.addEventListener('click', this.onLinkClick, true);
+    }
+
     this.model.securityDefinitions = this.model.securityDefinitions || {};
 
     // Render each resource
@@ -19886,11 +19890,10 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
   onLinkClick: function (e) {
     var el = e.target;
-    if (el.tagName === 'A' && el.href) {
-      if (location.hostname !== el.hostname || location.port !== el.port) {
+
+    if (el.tagName === 'A' && el.href && !el.target) {
         e.preventDefault();
         window.open(el.href, '_blank');
-      }
     }
   }
 });
@@ -19918,15 +19921,26 @@ SwaggerUi.Models.Oauth2Model = Backbone.Model.extend({
     },
 
     validate: function () {
-        var valid =  _.findIndex(this.get('scopes'), function (o) {
-           return o.checked === true;
-        }) > -1;
+      var valid = false;
+      var scp = this.get('scopes');
+      var idx =  _.findIndex(scp, function (o) {
+         return o.checked === true;
+      });
 
-        this.set('valid', valid);
+      if(scp.length > 0 && idx >= 0) {
+          valid = true;
+      }
 
-        return valid;
+      if(scp.length === 0) {
+          valid = true;
+      }
+
+      this.set('valid', valid);
+
+      return valid;
     }
 });
+
 'use strict';
 
 SwaggerUi.Views.Oauth2View = Backbone.View.extend({
@@ -20831,7 +20845,8 @@ SwaggerUi.Views.ParameterView = Backbone.View.extend({
 
   initialize: function(){
     Handlebars.registerHelper('isArray', function(param, opts) {
-      if (param.type.toLowerCase() === 'array' || param.allowMultiple) {
+      var paramType = param.type && param.type.toLowerCase();
+      if (paramType === 'array' || param.allowMultiple) {
         return opts.fn(this);
       } else {
         return opts.inverse(this);
@@ -21040,7 +21055,7 @@ SwaggerUi.partials.signature = (function () {
 
   // copy-pasted from swagger-js
   var getInlineModel = function(inlineStr) {
-    if(/^Inline Model \d+$/.test(inlineStr)) {
+    if(/^Inline Model \d+$/.test(inlineStr) && this.inlineModels) {
       var id = parseInt(inlineStr.substr('Inline Model'.length).trim(),10); //
       var model = this.inlineModels[id];
       return model;
@@ -21269,6 +21284,14 @@ SwaggerUi.partials.signature = (function () {
       var type = schema.type || 'object';
       var isArray = type === 'array';
 
+      if (!_.isUndefined(schema.description)) {
+        html += ': ' + '<span class="propDesc">' + schema.description + '</span>';
+      }
+
+      if (schema.enum) {
+        html += ' = <span class="propVals">[\'' + schema.enum.join('\', \'') + '\']</span>';
+      }
+
       if (isArray) {
         if (_.isPlainObject(schema.items) && !_.isUndefined(schema.items.type)) {
           type = schema.items.type;
@@ -21418,15 +21441,12 @@ SwaggerUi.partials.signature = (function () {
               var requiredClass = propertyIsRequired ? 'required' : '';
               var html = '<span class="propName ' + requiredClass + '">' + name + '</span> (';
               var model;
-              var propDescription;
 
               // Allow macro to set the default value
               cProperty.default = modelPropertyMacro(cProperty);
 
               // Resolve the schema (Handle nested schemas)
               cProperty = resolveSchema(cProperty);
-
-              propDescription = property.description || cProperty.description;
 
               // We need to handle property references to primitives (Issue 339)
               if (!_.isUndefined(cProperty.$ref)) {
@@ -21449,14 +21469,6 @@ SwaggerUi.partials.signature = (function () {
               }
 
               html += ')';
-
-              if (!_.isUndefined(propDescription)) {
-                html += ': ' + '<span class="propDesc">' + propDescription + '</span>';
-              }
-
-              if (cProperty.enum) {
-                html += ' = <span class="propVals">[\'' + cProperty.enum.join('\', \'') + '\']</span>';
-              }
 
               return '<div' + (property.readOnly ? ' class="readOnly"' : '') + '>' + primitiveToOptionsHTML(cProperty, html);
             }).join(',</div>');
@@ -21736,15 +21748,19 @@ SwaggerUi.partials.signature = (function () {
     var value;
     var items = definition.items;
     var xml = definition.xml || {};
+    var namespace = getNamespace(xml);
+    var attributes = [];
 
     if (!items) { return getErrorMessage(); }
 
     value = createSchemaXML(name, items, models, config);
 
-    xml = xml || {};
+    if (namespace) {
+      attributes.push(namespace);
+    }
 
     if (xml.wrapped) {
-      value = wrapTag(name, value);
+      value = wrapTag(name, value, attributes);
     }
 
     return value;
@@ -21913,7 +21929,7 @@ SwaggerUi.partials.signature = (function () {
   function getDescriptorByRef($ref, name, models, config) {
     var modelType = simpleRef($ref);
     var model = models[modelType] || {};
-    var type = model.type || 'object';
+    var type = model.definition && model.definition.type ? model.definition.type : 'object';
     name = name || model.name;
 
     if (config.modelsToIgnore.indexOf($ref) > -1) {
