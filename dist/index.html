@@ -33,13 +33,17 @@
 
   <script type="text/javascript">
     $(function () {
-      var url = window.location.search.match(/url=([^&]+)/);
-      if (url && url.length > 1) {
-        url = decodeURIComponent(url[1]);
-      } else {
-        url = "/v1/swagger";
-      }
+      var path = window.location.pathname.split('/')
+      var updatedPath = path.map(function (itr) {
+        if (itr === 'docs') {
+          return 'swagger'
+        } else {
+          return itr
+        }
+      })
 
+      var url = updatedPath.join('/')
+      url = url.substr(0, url.length - 1)
       hljs.configure({
         highlightSizeThreshold: 5000
       });
