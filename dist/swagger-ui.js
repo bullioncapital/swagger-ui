@@ -4209,7 +4209,7 @@ var Operation = module.exports = function (parent, scheme, operationId, httpMeth
   this.parent = parent;
   this.path = (path || errors.push('Operation ' + this.nickname + ' is missing path.'));
   this.responses = (args.responses || {});
-  this.scheme = scheme || parent.scheme || 'http';
+  this.scheme = scheme || parent.scheme || 'https';
   this.schemes = args.schemes || parent.schemes;
   this.security = args.security || parent.security;
   this.summary = args.summary || '';
@@ -4656,7 +4656,7 @@ Operation.prototype.urlify = function (args) {
       }
     }
   }
-  var url = this.scheme + '://' + this.host;
+  var url = this.host;
 
   if (this.basePath !== '/') {
     url += this.basePath;
