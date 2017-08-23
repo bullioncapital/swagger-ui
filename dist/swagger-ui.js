@@ -1492,7 +1492,7 @@ SwaggerClient.prototype.buildFromSpec = function (response) {
   this.apisArray = [];
   this.basePath = response.basePath || '';
   this.consumes = response.consumes;
-  this.host = response.host || '';
+  this.host = window.location.origin || response.host || '';
   this.info = response.info || {};
   this.produces = response.produces;
   this.schemes = response.schemes || [];
@@ -2586,7 +2586,7 @@ Resolver.prototype.finish = function (spec, root, resolutionTable, resolvedRefs,
 
         for (key in resolvedTo.obj) {
           var abs = resolvedTo.obj[key];
-          
+
           if (localResolve !== true) {
             // don't retain root for local definitions
             abs = this.retainRoot(resolvedTo.obj[key], item.root);
@@ -18760,7 +18760,7 @@ Emitter.prototype.hasListeners = function(event){
  * TODO: combatible error handling?
  */
 
-module.exports = function(arr, fn, initial){  
+module.exports = function(arr, fn, initial){
   var idx = 0;
   var len = arr.length;
   var curr = arguments.length == 3
@@ -18770,7 +18770,7 @@ module.exports = function(arr, fn, initial){
   while (idx < len) {
     curr = fn.call(null, curr, arr[idx], ++idx, arr);
   }
-  
+
   return curr;
 };
 },{}]},{},[1])(1)
