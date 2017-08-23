@@ -1524,9 +1524,9 @@ SwaggerClient.prototype.buildFromSpec = function (response) {
   if (typeof this.url === 'string') {
     location = this.parseUri(this.url);
     if (typeof this.scheme === 'undefined' && typeof this.schemes === 'undefined' || this.schemes.length === 0) {
-      this.scheme = location.scheme || 'http';
+      this.scheme = '';
     } else if (typeof this.scheme === 'undefined') {
-      this.scheme = this.schemes[0] || location.scheme;
+      this.scheme = '';
     }
 
     if (typeof this.host === 'undefined' || this.host === '') {
@@ -1539,10 +1539,10 @@ SwaggerClient.prototype.buildFromSpec = function (response) {
   }
   else {
     if (typeof this.schemes === 'undefined' || this.schemes.length === 0) {
-      this.scheme = 'http';
+      this.scheme = '';
     }
     else if (typeof this.scheme === 'undefined') {
-      this.scheme = this.schemes[0];
+      this.scheme = '';
     }
   }
 
